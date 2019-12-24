@@ -1,16 +1,19 @@
 ---
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: node-exporter
   namespace: kube-system
   labels:
-    k8s-app: node-exporter
+    app: node-exporter
 spec:
+  selector:
+    matchLabels:
+      app: node-exporter
   template:
     metadata:
       labels:
-        k8s-app: node-exporter
+        app: node-exporter
     spec:
       containers:
       - image: prom/node-exporter
